@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>업로드 결과</h1>
+    {% if results != False %}
+    <p>업로드한 파일에서 민감정보가 발견되었습니다.</p>
+    <table border="1">
+        <tr>
+            <td>메일주소</td>
+            <td>주민번호</td>
+            <td>연락처</td>
+            <td>주소</td>
+            <td>카드번호</td>
+        </tr>
+        {% for email, person, num, addr, card in results %}
+        <tr>
+            <td>{{ email }}</td>
+            <td>{{ person }}</td>
+            <td>{{ num }}</td>
+            <td>{{ addr }}</td>
+            <td>{{ card }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>민감정보가 발견되지 않았습니다.</p>
+    {% endif %}
+    <a href="/">돌아가기</a>
+</body>
+</html>
